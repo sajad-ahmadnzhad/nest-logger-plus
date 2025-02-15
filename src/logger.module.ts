@@ -1,10 +1,9 @@
-import { Module } from '@nestjs/common';
-import { AppController } from './app.controller';
-import { AppService } from './app.service';
+import { Module, Global } from '@nestjs/common';
 import { WinstonModule } from 'nest-winston';
 import * as winston from 'winston'
 import 'winston-daily-rotate-file';
 
+@Global()
 @Module({
   imports: [
     WinstonModule.forRoot({
@@ -35,8 +34,6 @@ import 'winston-daily-rotate-file';
       ]
     })
   ],
-  controllers: [AppController],
-  providers: [AppService],
   exports: [WinstonModule]
 })
-export class AppModule { }
+export class LoggerModule { }
