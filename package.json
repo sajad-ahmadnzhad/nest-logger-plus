@@ -1,7 +1,7 @@
 {
-  "name": "gym-management-logger",
-  "version": "1.1.0",
-  "description": "A shared logger module for NestJS microservices using Winston",
+  "name": "nest-winston-logger",
+  "version": "1.1.1",
+  "description": "A customizable logger module for NestJS applications using Winston",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "scripts": {

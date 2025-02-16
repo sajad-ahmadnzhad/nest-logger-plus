@@ -5,18 +5,18 @@
 </p>
 
 <p align="center">
-  <a href="https://www.npmjs.com/package/nestjs-logger-module">
-    <img src="https://img.shields.io/npm/v/nestjs-logger-module.svg" alt="NPM Version">
+  <a href="https://www.npmjs.com/package/nest-winston-logger">
+    <img src="https://img.shields.io/npm/v/nest-winston-logger.svg" alt="NPM Version">
   </a>
-  <a href="https://github.com/your-repo/nestjs-logger-module">
-    <img src="https://img.shields.io/github/stars/your-repo/nestjs-logger-module.svg" alt="GitHub Stars">
+  <a href="https://github.com/sajad-ahmadnzhad/nest-winston-logger">
+    <img src="https://img.shields.io/github/stars/sajad-ahmadnzhad/nest-winston-logger.svg" alt="GitHub Stars">
   </a>
 </p>
 
 ## 📌 Installation
 
 ```sh
-npm install nestjs-logger-module winston winston-daily-rotate-file
+npm install nest-winston-logger winston winston-daily-rotate-file
 ```
 
 ## 🚀 Usage
@@ -27,7 +27,7 @@ Register the module in your root module (`AppModule`) using `forRoot()` and spec
 
 ```typescript
 import { Module } from '@nestjs/common';
-import { LoggerModule } from 'nestjs-logger-module';
+import { LoggerModule } from 'nest-winston-logger';
 
 @Module({
   imports: [LoggerModule.forRoot({ logPath: `${process.cwd()}/logs` })],
@@ -41,7 +41,7 @@ You can inject `LoggerService` into any provider and use its methods:
 
 ```typescript
 import { Injectable } from '@nestjs/common';
-import { LoggerService } from 'nestjs-logger-module';
+import { LoggerService } from 'nest-winston-logger';
 
 @Injectable()
 export class SomeService {
