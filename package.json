@@ -1,6 +1,6 @@
 {
   "name": "nest-logger-plus",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A customizable logger module for NestJS applications using Winston",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -19,13 +19,13 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/sajad-ahmadnzhad/nest-winston-logger.git"
+    "url": "git+https://github.com/sajad-ahmadnzhad/nest-logger-plus.git"
   },
   "keywords": [],
   "author": "",
-  "license": "ISC",
+  "license": "MIT",
   "bugs": {
-    "url": "https://github.com/sajad-ahmadnzhad/nest-winston-logger/issues"
+    "url": "https://github.com/sajad-ahmadnzhad/nest-logger-plus/issues"
   },
-  "homepage": "https://github.com/sajad-ahmadnzhad/nest-winston-logger#readme"
+  "homepage": "https://github.com/sajad-ahmadnzhad/nest-logger-plus#readme"
 }
