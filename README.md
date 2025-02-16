@@ -1,22 +1,22 @@
-<h1 align="center">📜 NestJS Logger Module</h1>
+<h1 align="center">📜 Nestjs Logger Plus</h1>
 
 <p align="center">
   A powerful and customizable logger module for NestJS using <code>winston</code> and <code>winston-daily-rotate-file</code>.
 </p>
 
 <p align="center">
-  <a href="https://www.npmjs.com/package/nest-winston-logger">
-    <img src="https://img.shields.io/npm/v/nest-winston-logger.svg" alt="NPM Version">
+  <a href="https://www.npmjs.com/package/nest-logger-plus">
+    <img src="https://img.shields.io/npm/v/nest-logger-plus.svg" alt="NPM Version">
   </a>
-  <a href="https://github.com/sajad-ahmadnzhad/nest-winston-logger">
-    <img src="https://img.shields.io/github/stars/sajad-ahmadnzhad/nest-winston-logger.svg" alt="GitHub Stars">
+  <a href="https://github.com/sajad-ahmadnzhad/nest-logger-plus">
+    <img src="https://img.shields.io/github/stars/sajad-ahmadnzhad/nest-logger-plus.svg" alt="GitHub Stars">
   </a>
 </p>
 
 ## 📌 Installation
 
 ```sh
-npm install nest-winston-logger winston winston-daily-rotate-file
+npm install nest-logger-plus winston winston-daily-rotate-file
 ```
 
 ## 🚀 Usage
@@ -27,7 +27,7 @@ Register the module in your root module (`AppModule`) using `forRoot()` and spec
 
 ```typescript
 import { Module } from '@nestjs/common';
-import { LoggerModule } from 'nest-winston-logger';
+import { LoggerModule } from 'nest-logger-plus';
 
 @Module({
   imports: [LoggerModule.forRoot({ logPath: `${process.cwd()}/logs` })],
@@ -41,7 +41,7 @@ You can inject `LoggerService` into any provider and use its methods:
 
 ```typescript
 import { Injectable } from '@nestjs/common';
-import { LoggerService } from 'nest-winston-logger';
+import { LoggerService } from 'nest-logger-plus';
 
 @Injectable()
 export class SomeService {
