@@ -1,99 +1,87 @@
+<h1 align="center">📜 NestJS Logger Module</h1>
+
 <p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="120" alt="Nest Logo" /></a>
+  A powerful and customizable logger module for NestJS using <code>winston</code> and <code>winston-daily-rotate-file</code>.
 </p>
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
-
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://coveralls.io/github/nestjs/nest?branch=master" target="_blank"><img src="https://coveralls.io/repos/github/nestjs/nest/badge.svg?branch=master#9" alt="Coverage" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg" alt="Donate us"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow" alt="Follow us on Twitter"></a>
+<p align="center">
+  <a href="https://www.npmjs.com/package/nestjs-logger-module">
+    <img src="https://img.shields.io/npm/v/nestjs-logger-module.svg" alt="NPM Version">
+  </a>
+  <a href="https://github.com/your-repo/nestjs-logger-module">
+    <img src="https://img.shields.io/github/stars/your-repo/nestjs-logger-module.svg" alt="GitHub Stars">
+  </a>
 </p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
 
-## Description
+## 📌 Installation
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
-
-## Project setup
-
-```bash
-$ pnpm install
+```sh
+npm install nestjs-logger-module winston winston-daily-rotate-file
 ```
 
-## Compile and run the project
+## 🚀 Usage
 
-```bash
-# development
-$ pnpm run start
+### 1️⃣ Import the Logger Module
 
-# watch mode
-$ pnpm run start:dev
+Register the module in your root module (`AppModule`) using `forRoot()` and specify the log path.
 
-# production mode
-$ pnpm run start:prod
+```typescript
+import { Module } from '@nestjs/common';
+import { LoggerModule } from 'nestjs-logger-module';
+
+@Module({
+  imports: [LoggerModule.forRoot({ logPath: `${process.cwd()}/logs` })],
+})
+export class AppModule {}
 ```
 
-## Run tests
+### 2️⃣ Inject and Use Logger Service
 
-```bash
-# unit tests
-$ pnpm run test
+You can inject `LoggerService` into any provider and use its methods:
 
-# e2e tests
-$ pnpm run test:e2e
+```typescript
+import { Injectable } from '@nestjs/common';
+import { LoggerService } from 'nestjs-logger-module';
 
-# test coverage
-$ pnpm run test:cov
+@Injectable()
+export class SomeService {
+  constructor(private readonly logger: LoggerService) {}
+
+  someMethod() {
+    this.logger.log('This is an info message', 'SomeService');
+    this.logger.error('This is an error message', 'Error stack trace', 'SomeService');
+    this.logger.warn('This is a warning message', 'SomeService');
+    this.logger.debug('This is a debug message', 'SomeService');
+  }
+}
 ```
 
-## Deployment
+## 🎯 Logger Methods
 
-When you're ready to deploy your NestJS application to production, there are some key steps you can take to ensure it runs as efficiently as possible. Check out the [deployment documentation](https://docs.nestjs.com/deployment) for more information.
+| Method | Description |
+|--------|-------------|
+| `log(message: string, context?: string)` | Logs an **info** level message |
+| `error(message: string, trace?: string, context?: string)` | Logs an **error** level message with optional stack trace |
+| `warn(message: string, context?: string)` | Logs a **warning** level message |
+| `debug(message: string, context?: string)` | Logs a **debug** level message |
 
-If you are looking for a cloud-based platform to deploy your NestJS application, check out [Mau](https://mau.nestjs.com), our official platform for deploying NestJS applications on AWS. Mau makes deployment straightforward and fast, requiring just a few simple steps:
+## ⚙️ Configuration
 
-```bash
-$ pnpm install -g mau
-$ mau deploy
-```
+| Option | Type | Default | Description |
+|--------|------|---------|-------------|
+| `logPath` | `string` | `logs/` | Path where log files will be stored |
 
-With Mau, you can deploy your application in just a few clicks, allowing you to focus on building features rather than managing infrastructure.
+## 📂 Log File Rotation
 
-## Resources
+- Logs are stored in daily rotating files.
+- Maximum size per file: **10MB**.
+- Logs older than **14 days** are automatically deleted.
 
-Check out a few resources that may come in handy when working with NestJS:
+## 🤝 Contributing
 
-- Visit the [NestJS Documentation](https://docs.nestjs.com) to learn more about the framework.
-- For questions and support, please visit our [Discord channel](https://discord.gg/G7Qnnhy).
-- To dive deeper and get more hands-on experience, check out our official video [courses](https://courses.nestjs.com/).
-- Deploy your application to AWS with the help of [NestJS Mau](https://mau.nestjs.com) in just a few clicks.
-- Visualize your application graph and interact with the NestJS application in real-time using [NestJS Devtools](https://devtools.nestjs.com).
-- Need help with your project (part-time to full-time)? Check out our official [enterprise support](https://enterprise.nestjs.com).
-- To stay in the loop and get updates, follow us on [X](https://x.com/nestframework) and [LinkedIn](https://linkedin.com/company/nestjs).
-- Looking for a job, or have a job to offer? Check out our official [Jobs board](https://jobs.nestjs.com).
+Contributions are welcome! Feel free to open an issue or submit a pull request.
 
-## Support
+## 📜 License
 
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
+This project is licensed under the **MIT License**.
 
-## Stay in touch
-
-- Author - [Kamil Myśliwiec](https://twitter.com/kammysliwiec)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
-
-## License
-
-Nest is [MIT licensed](https://github.com/nestjs/nest/blob/master/LICENSE).
